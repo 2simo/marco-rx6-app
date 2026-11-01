@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MARCO_RX6 — مدونة ألعاب البلايستيشن</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;background:#0d1117;color:#e6e6e6}
+*{box-sizing:border-box;margin:0;padding:0}
+a{color:#38bdf8}
+button{cursor:pointer;font-family:inherit;border:none;background:none;color:inherit}
+input,select,textarea{font-family:inherit;font-size:14px;width:100%;border:1px solid #374151;background:#151a24;color:#fff;border-radius:6px;padding:9px 12px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:#0284c7}
+.hidden{display:none!important}
+body{min-height:100vh;padding-bottom:72px}
+.topbar{background:linear-gradient(to left,#0369a1,#1e3a8a);color:#fff;text-align:center;font-size:11px;line-height:1.7;padding:7px 10px}
+header{position:sticky;top:0;z-index:40;background:#10151f;border-bottom:1px solid #1f2937}
+.header-in{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:10px 16px}
+.logo{display:flex;align-items:center;gap:8px}
+.logo-badge{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#0ea5e9,#1d4ed8);display:grid;place-items:center;font-weight:900;font-size:17px;color:#fff}
+.logo b{font-size:14px;letter-spacing:.5px;color:#fff;display:block}
+.logo b span{color:#38bdf8}
+.logo small{font-size:10px;color:#9ca3af;display:block}
+.nav{margin-right:auto;display:flex;gap:2px;font-size:12px}
+.nav button{padding:6px 12px;border-radius:6px;color:#9ca3af}
+.nav button:hover{background:rgba(255,255,255,.06);color:#fff}
+.nav button.active{color:#38bdf8;font-weight:700}
+.layout{max-width:1080px;margin:0 auto;padding:18px 16px;display:grid;gap:22px}
+@media(min-width:900px){.layout{grid-template-columns:1fr 250px}}
+.home-head{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+.search{flex:1}
+.status{border:1px solid #1f2937;background:#151a24;border-radius:6px;padding:7px 10px;font-size:11px;color:#9ca3af;margin-bottom:12px}
+.sec-title{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1f2937;padding-bottom:8px;margin-bottom:14px}
+.sec-title h2{font-size:16px;font-weight:800;color:#fff}
+.sec-title span{font-size:11px;color:#6b7280}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:600px){.cards{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:900px){.cards{grid-template-columns:repeat(4,1fr)}}
+.card{border:1px solid #1f2937;background:#151a24;border-radius:8px;overflow:hidden;text-align:right;transition:.15s;display:block}
+.card:hover{border-color:rgba(2,132,199,.6);background:#1a2130;transform:translateY(-2px)}
+.poster{aspect-ratio:3/4;background:linear-gradient(135deg,#1a2130,#0f1520);display:grid;place-items:center;overflow:hidden}
+.poster img{width:100%;height:100%;object-fit:cover;display:block}
+.poster .ph{font-size:34px;opacity:.5}
+.card .meta{border-top:1px solid #1f2937;padding:9px 10px}
+.card .t{font-size:12px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card .s{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:#6b7280;margin-top:4px}
+.badge{background:rgba(7,89,133,.55);color:#38bdf8;border-radius:4px;padding:2px 6px;font-size:10px}
+.side{display:flex;flex-direction:column;gap:14px}
+.panel{border:1px solid #1f2937;background:#151a24;border-radius:8px;padding:14px}
+.panel h3{font-size:12px;font-weight:800;color:#fff;border-bottom:1px solid #1f2937;padding-bottom:8px;margin-bottom:10px}
+.panel p{font-size:11px;line-height:1.7;color:#9ca3af}
+.cat-item{display:flex;justify-content:space-between;width:100%;padding:6px 8px;border-radius:6px;font-size:12px;color:#d1d5db}
+.cat-item:hover{background:rgba(7,89,133,.25);color:#7dd3fc}
+.cat-item .n{background:#374151;color:#9ca3af;border-radius:4px;padding:1px 6px;font-size:10px}
+.svc{font-size:11px;color:#38bdf8;line-height:2}
+.svc p{color:#38bdf8}
+.btn{display:inline-block;border-radius:6px;padding:9px 18px;font-size:12px;font-weight:700;background:linear-gradient(to left,#0284c7,#1d4ed8);color:#fff;text-decoration:none}
+.btn:hover{opacity:.9}
+.btn-o{background:rgba(255,255,255,.06);color:#d1d5db}
+.crumbs{font-size:11px;color:#9ca3af;margin-bottom:12px;display:flex;gap:6px;flex-wrap:wrap}
+.crumbs button{color:#38bdf8;font-weight:700}
+.game-top{display:flex;gap:14px;margin-bottom:16px}
+@media(max-width:500px){.game-top{flex-direction:column}}
+.gcover{width:170px;flex-shrink:0;border:1px solid #1f2937;background:#0f1520;border-radius:8px;overflow:hidden}
+.gcover img{width:100%;display:block}
+.gtitle{font-size:20px;font-weight:800;color:#fff;line-height:1.4;margin-bottom:8px}
+.gsub{display:flex;gap:10px;flex-wrap:wrap;font-size:11px;color:#9ca3af;margin-bottom:10px;align-items:center}
+.gdesc{font-size:13px;line-height:1.8;color:#d1d5db}
+.infotbl{border:1px solid #1f2937;border-radius:8px;overflow:hidden;margin-bottom:18px}
+.infotbl h2{background:#151a24;border-bottom:1px solid #1f2937;padding:9px 14px;font-size:12px;font-weight:800;color:#fff}
+table{width:100%;border-collapse:collapse;font-size:12px}
+td{padding:9px 14px;border-left:1px solid #1f2937}
+td.k{width:120px;font-weight:700;color:#9ca3af}
+tr:nth-child(odd){background:#0f1520}tr:nth-child(even){background:#151a24}
+.dl{border:1px solid #1f2937;background:#151a24;border-radius:8px;padding:16px;margin-bottom:18px}
+.dl h2{font-size:13px;font-weight:800;color:#fff;margin-bottom:12px}
+.dl .row{display:flex;gap:8px;flex-wrap:wrap}
+.chat{border:1px solid #1f2937;background:#151a24;border-radius:8px;padding:18px;text-align:center;margin:0 16px 20px;max-width:1048px}
+@media(min-width:1110px){.chat{margin:0 auto 20px}}
+footer{border-top:1px solid #1f2937;padding:18px;text-align:center;font-size:11px;color:#6b7280;line-height:1.8}
+.bottomnav{position:fixed;inset-inline:0;bottom:0;z-index:40;display:flex;background:rgba(16,21,31,.96);backdrop-filter:blur(8px);border-top:1px solid #1f2937}
+.bottomnav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 0 8px;font-size:10px;font-weight:700;color:#9ca3af}
+.bottomnav button.active{color:#38bdf8}
+.bottomnav button:hover{color:#fff}
+.toast{position:fixed;bottom:78px;left:50%;transform:translateX(-50%);z-index:50;background:#0284c7;color:#fff;font-size:13px;font-weight:700;border-radius:6px;padding:10px 20px;box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.auth{max-width:360px;margin:30px auto;border:1px solid #1f2937;background:#151a24;border-radius:8px;padding:24px}
+.auth h2{font-size:15px;font-weight:800;color:#fff;margin-bottom:6px}
+.auth p{font-size:12px;color:#9ca3af;margin-bottom:14px}
+.err{color:#f87171;font-size:12px;margin-bottom:10px}
+.admin form{border:1px solid #1f2937;background:#151a24;border-radius:8px;padding:18px;margin-bottom:18px}
+.admin form h2{font-size:14px;font-weight:800;color:#fff;margin-bottom:14px}
+.fgrid{display:grid;gap:10px}
+@media(min-width:700px){.fgrid{grid-template-columns:1fr 1fr}.fgrid .wide{grid-column:1/-1}}
+.rowlist{display:flex;flex-wrap:wrap;align-items:center;gap:10px;border:1px solid #1f2937;background:#151a24;border-radius:8px;padding:10px 12px;margin-bottom:8px}
+.rowlist .thumb{width:44px;height:44px;border-radius:6px;background:#0f1520;overflow:hidden;flex-shrink:0;display:grid;place-items:center;font-size:18px}
+.rowlist .thumb img{width:100%;height:100%;object-fit:cover}
+.rowlist .info{flex:1;min-width:0}
+.rowlist .info .t{font-size:13px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rowlist .info .s{font-size:11px;color:#6b7280}
+.rowlist .ed{background:rgba(7,89,133,.55);color:#7dd3fc;border-radius:6px;padding:6px 12px;font-size:11px;font-weight:700}
+.rowlist .de{background:rgba(127,29,29,.5);color:#fca5a5;border-radius:6px;padding:6px 12px;font-size:11px;font-weight:700}
+.back{font-size:12px;font-weight:700;color:#38bdf8;margin-bottom:14px;display:inline-block}
+</style>
+</head>
+<body>
+<div class="topbar">أهلاً بكم في مدونة <b>MARCO_RX6</b> لألعاب البايستيشن والتعديلات | اطلب لعبتك المفضلة عبر قناة التليجرام | جميع الألعاب مرفوعة بروابط مباشرة وسريعة!</div>
+<header><div class="header-in">
+  <button class="logo" onclick="goHome()">
+    <div class="logo-badge">M</div>
+    <div><b>MARCO<span>_RX6</span></b><small>منصة ألعاب بلايستيشن</small></div>
+  </button>
+  <nav class="nav">
+    <button onclick="goHome()">الرئيسية</button>
+    <button onclick="openCat('PlayStation 4')">PlayStation 4</button>
+    <button onclick="openCat('PlayStation 3')">PlayStation 3</button>
+    <button onclick="openCat('بلايستيشن 2 معربة')">بلايستيشن 2 معربة</button>
+  </nav>
+  <button class="btn btn-o" id="adminBtn" onclick="state.loggedIn?openAdmin():openLogin()">🔓 دخول</button>
+</div></header>
+
+<div class="layout" id="layout"></div>
+
+<div class="chat">
+  <h3 style="font-size:13px;font-weight:800;color:#fff;margin-bottom:5px">انضم إلى قناة المحادثة 💬</h3>
+  <p style="font-size:12px;color:#9ca3af;line-height:1.7;margin-bottom:12px">إذا واجهتك مشكلة في رابط تحميل أو لعبة، ادخل قناة MARCO_RX2 وتواصل معنا مباشرة.</p>
+  <a class="btn" href="https://marcorx6.blogspot.com" target="_blank" rel="noreferrer">انضم إلى قناة MARCO_RX2</a>
+</div>
+
+<footer>
+  <p><b style="color:#9ca3af">MARCO_RX6</b> — منصة ألعاب بلايستيشن. استخدم الشريط السفلي للوصول السريع إلى الرئيسية والأقسام والمفضلة والمزيد.</p>
+  <a href="https://marcorx6.blogspot.com" target="_blank" rel="noreferrer">marcorx6.blogspot.com</a>
+</footer>
+
+<nav class="bottomnav">
+  <button data-bn="home" onclick="goHome()"><span>🏠</span>الرئيسية</button>
+  <button data-bn="cat" onclick="openCat('PlayStation 4')"><span>📁</span>الأقسام</button>
+  <button onclick="toast('قريباً: قائمة المفضلة ⭐')"><span>⭐</span>المفضلة</button>
+  <button onclick="goHome()"><span>☰</span>المزيد</button>
+</nav>
+
+<script>
+"use strict";
+var BLOG_URL = "https://marcorx6.blogspot.com";
+var STORAGE_KEY = "marcorx6_games_v3";
+var ADMIN_PASS = "admin";
+
+var CATEGORIES = [
+  { name: "PlayStation 4", count: 84 }, { name: "PlayStation 3", count: 208 },
+  { name: "PlayStation 2", count: 67 }, { name: "PlayStation 1", count: 7 },
+  { name: "بلايستيشن 2 معربة", count: 13 }, { name: "بلايستيشن 3 معربة" },
+  { name: "تطبيقات", count: 12 }, { name: "مكاتب", count: 3 },
+  { name: "افتارز", count: 3 }, { name: "DLC", count: 1 },
+  { name: "ثيمات", count: 1 }, { name: "برامج بلايستيشن 3" }
+];
+
+var DEFAULT_GAMES = [
+  { title: "PS MTP Explorer", category: "تطبيقات", date: "2026-10-28", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgpgJQgAPpjwldFfIjwS2yJ52n0HfScQDr-ZWJXxHgqk6QEeKJAavsuIIyIBEFg__hAKhDirlkSTocVKYtQuQekl-uk_pjBV8DMsEi-wt5c0a0P8YCcen72lSvygVq2SSdaTOQFJxXEGSjBqJCE-MVpCiFr82bPzanVR5-6Ro8mPZH_QeTHjJ9AVJnnAeM/s400/1000212500.png", postUrl: "https://marcorx6.blogspot.com/2026/10/ps-mtp-explorer.html", size: "6.62MB", version: "غير معروف", format: "PKG", language: "الإنجليزية", system: "PlayStation 4", password: "لا يوجد", credits: "MARCO" },
+  { title: "Youtube", category: "تطبيقات", date: "2026-10-28", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjOdCyu8zw6z89hkePtlVLHGeR6nACmIoYp0_pka28DAMF79BL6qnyoB8vSTi0OTJq0s5h6qHRp57R7uLfor84Tvsnl-FO1a8RGjREoSH-z3bdTVoRRmu-1qGBQPYhnvYFfjrQxc6yH9DHUn5HpIzJgsl0eFQF0hUmOgrMsVfLfdpp7LnnWYAFi3Qe66L0/s400/1000212712.jpg", postUrl: "https://marcorx6.blogspot.com/2026/10/youtube.html", size: "151.90MB", version: "CUSA01116", format: "PKG", language: "الإنجليزية", system: "PlayStation 4", password: "لا يوجد", credits: "MARCO" },
+  { title: "Netflix", category: "تطبيقات", date: "2026-10-28", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgP-rbfBCAZI_pD5WRNVb0fSxqQm6PCyABFGqjEBQx5Vc4DgCGEdYr8hChwA1u7PozG-R0M3xVeioUPxzGRokk1YuQ0RfY3EUMiXFn_X8BxyphJa72N32HMEZgvDiF90CCS9n0q1bnf38dBx_uKPKlGAJ5avWptk_kyc3Xe2HJCxm6u0ItZCrH5HgwqJQw/s400/1000212710.jpg", postUrl: "https://marcorx6.blogspot.com/2026/10/netflix.html", size: "64.03MB", version: "CUSA00127", format: "PKG", language: "الإنجليزية", system: "PlayStation 4", password: "لا يوجد", credits: "MARCO" },
+  { title: "PS4 Temperature", category: "تطبيقات", date: "2026-10-28", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5TDukZNnZ4O4cw5RVbECHb4Ojbo3ncZesaajG0QE94UAx9fg3S9oizHBTn0mwP5EeT9H2eQWZ383zZAWZptTaMfNDoSzelb_mJsOljtTwLEMe3Nrpp6kWYSIiHMa6ncXvVctYqnFpisrXrBpCq8pZI0hH2Wt4vfk5Lym0qfPpH5jo5niwxgG4QcGoSyc/s400/1000212708.png", postUrl: "https://marcorx6.blogspot.com/2026/10/ps4-temperature.html", size: "50.33MB", version: "LAPY20006", format: "PKG", language: "الإنجليزية", system: "PlayStation 4", password: "لا يوجد", credits: "MARCO" },
+  { title: "PS4 FTP Client", category: "تطبيقات", date: "2026-10-28", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiKgnXvq3YkNEQdRCOEI2ROB00OCkdCliU2jicNF6wb7UCw1M5gE0dam1xHqld2guQSf1eI-ikBaZvi35NK2StBt4FWYd4yI1dlwprVQXkmjH3QUXvJ7LnURIUeh1Q32P73-44aaTHc7FOKraXm93YKAJVBb6-6g9x2Iv54wMPq9TIBHQh7E1CuGrq77MA/s400/1000212701.png", postUrl: "https://marcorx6.blogspot.com/2026/10/ps4-ftp-client.html", size: "30.80MB", version: "FTPC00001", format: "PKG", language: "الإنجليزية", system: "PlayStation 4", password: "لا يوجد", credits: "MARCO" },
+  { title: "Remote PKG installer", category: "تطبيقات", date: "2026-10-28", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZi0r2JJW9lUvBBSv0cz0kJBhdTmOF2OqebqxdJUFctyNe2yb8TQ5UJ-vSDWTqQr_cfNVTkXwydGcOdakXXwYyZkS7ETPODbK7Je4M7jDeSZxw5wrHQN4GoXCWtbO8O-pg5LQZzFCeon_upmdEahhq80ZeiVzhF_uRVhhnRxTeo_g-4MCEQpQLIzQysu0/s400/1000212686.png", postUrl: "https://marcorx6.blogspot.com/2026/10/remote-pkg-installer.html", size: "4.70MB", version: "FLTZ00003", format: "PKG", language: "الإنجليزية", system: "PlayStation 4", password: "لا يوجد", credits: "MARCO" },
+  { title: "PS4 TOOLSET", category: "تطبيقات", date: "2026-10-28", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhaLOkyd-MLk0QKREaFKT-XrKD4f8pvPw-MlGI1cDUXwkVPIBsW6ArEzyeAD0gtHIF1RCRiTqaMoNqdjwDEYZ_HVNI1Y1tYxXDhBuPpI_NYJrY2-NK2I65SAzWuhKm_OCq8ykHLHCb0bCNV7eEbHQGwzKtFmYwOifTcw3pdlangh1NiheNUEK_1xjSGrho/s400/1000212680.png", postUrl: "https://marcorx6.blogspot.com/2026/10/ps4-toolset.html", size: "158.90MB", version: "SAAT29385", format: "PKG", language: "الإنجليزية", system: "PlayStation 4", password: "لا يوجد", credits: "MARCO" },
+  { title: "PS4-Xplorer 2.0", category: "تطبيقات", date: "2026-10-28", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiFbNzx9B-IpSsQQeQjYheyFC0k5UtiLi44sel5PZE1E_ANY9z3sWcQHt1zCg2jVUF-U-SO9bbJ7rdLQ4jmwkr-EWC5NCCjvL_uv8BzmUeBpY41kh9GtGGyb-Okar3ydyvjTJ95prW0glDui-tdCccgdhbbBDa6_OCtwBW7UieVwtrDLauHJhU21fv_9zU/s400/1000212672.png", postUrl: "https://marcorx6.blogspot.com/2026/10/ps4-xplorer-20.html", size: "63.77MB", version: "LAPY20009", format: "PKG", language: "الإنجليزية", system: "PlayStation 4", password: "لا يوجد", credits: "MARCO" },
+  { title: "Apollo Save Tool", category: "تطبيقات", date: "2026-10-28", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgZNC35P8knQkJMU0C5X7MyxnKs0d_4zUt-LzS_zVa1bbYV7uoRGQUqxAMmJSlRZ1Isuwo08sSfOStvnKCee90_6YTA9MWMn8Y9NC7IIb32ATPdvX2lKb39CZdUPNiL1pTWPKVcCEaxJwqTXpNSAfWXkkzzZ4M0I-6GaKFf4TIWsjag03nt9ntKbuoIWjI/s400/1000212417.png", postUrl: "https://marcorx6.blogspot.com/2026/10/apollo-save-tool.html", size: "22.18MB", version: "APOL00004", format: "PKG", language: "الإنجليزية", system: "PlayStation 4", password: "لا يوجد", credits: "MARCO" },
+  { title: "PS4 Cheats Manager", category: "تطبيقات", date: "2026-10-28", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj1Nmp2criQC5yuoHQzGS0bRAuwSIfI6l3uowFH4SpBytqMEdvPjKLMM9n1L_uEK3_5pWEXhAGqmQKWmwqXjkrcSkF2Q7tcaQkgHtzTkNLA-Smxnqn5vDEehGtG917ZnAPcJeGC4GCjaaTP5kbMJyiY3Hz4F3cuUHo7zderWw0N5nJrg-NPOytIT3DvToU/s400/1000212401.png", postUrl: "https://marcorx6.blogspot.com/2026/10/ps4-cheats-manager.html", size: "19.80MB", version: "CHTM00777", format: "PKG", language: "الإنجليزية", system: "PlayStation 4", password: "لا يوجد", credits: "MARCO" },
+  { title: "The Witcher 3", category: "PlayStation 4", date: "2026-10-20", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEggzm66J849UPxtoSYfY-mT5ps847g8jqwlAclcUDPerA7ui44EoNMVCLl-_1DYrqSOLnpclW1Fvd0O5sY2rcgEJGqXjg9JIz8bWX8fNaIjsZwazAlr7HXv3wZJYt41L_0-5xfTMn5q-6WlTarZDAlW1gKe6-JYdGMOccSUXKpJSgJT26iIwE6ucsCB2j4/s400/1000195282.webp", postUrl: "https://marcorx6.blogspot.com/2026/10/the-witcher-3.html", size: "41GB", version: "CUSA05574", format: "PKG", language: "العربيه", system: "PlayStation 4 (PS4)", password: "4GAMER", credits: "4GAMER" },
+  { title: "Nioh 2 Complete Edition", category: "PlayStation 4", date: "2026-10-20", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEijMWsAkHz1CUN9W6krMUvAwe80ybN7snBzlVbY7-soGMSWFtFwjF_aqKOCtogAL9284Z8anCApSFJJoIWoWOaqWSENHaXFRIdODkhyL5dGFodWtFo_2RoKwIFGOack32UPFr6NKt2H8ktWKnMfPjdJjTKVm4BryozusNkXsTJ5LYpwVuwVESMB0sJdDLE/s400/1000195233.png", postUrl: "https://marcorx6.blogspot.com/2026/10/nioh-2-complete-edition.html", size: "34GB", version: "CUSA15532", format: "PKG", language: "العربيه", system: "PlayStation 4 (PS4)", password: "4GAMER", credits: "4GAMER" },
+  { title: "EA Sports FC 25", category: "PlayStation 4", date: "2026-10-15", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjp9AobPh4_D5eJ7cqdvtOFb3qUdemuNwk5pLqKDwOjfmeKpZ3EZPWJXt76KEsGK4-NFIG0oqGy7vqb02vSsJ-Xr7tVN6OuEZSPtyDwrCxsnQjIKepWTbzSv7Zmz_WpnkdgY7KF1r-T6MZa2_guAqGyk5U6PUtAHA0EtdqyZp5nyIUzvML6YvBWvTixH9c/s400/5859386679938977114.jpg", postUrl: "https://marcorx6.blogspot.com/2026/10/ea-sports-fc-25_01508971758.html", size: "41GB", version: "CUSA46399", format: "PKG", language: "معربه", system: "PlayStation 4 (PS4)", password: "4GAMER", credits: "4GAMER" },
+  { title: "Call of Duty Black Ops IIII", category: "PlayStation 4", date: "2026-10-15", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZDEPFJmUUeE5TMnrGOi6OmXDkzw2ehfxW0oVITT0h9D1MwlvWdFB69cZ3INyu64oom544jc47ebbjoRFJBytlN8JKvddh02A0vBCGsPuHa2wji2msuCpcjzT_JYcZw6e7OiUrSEcnMqUifARtbZSMDmaT-9S1C2T4K-sQSSO9j4MuxBplA3l0PSAjl74/s400/20261015_140215.jpg", postUrl: "https://marcorx6.blogspot.com/2026/10/call-of-duty-black-ops-iiii.html", size: "92GB", version: "CUSA12444", format: "PKG", language: "معربه", system: "PlayStation 4 (PS4)", password: "4GAMER", credits: "4GAMER" },
+  { title: "Assassin's Creed Black Flag", category: "PlayStation 4", date: "2026-10-12", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgFb3sM9hclkWHbCcZRDQ8b-GNERTFBEkTsHUkdHmT8BR4FrlJir_aAa1lxbDptmCYQ1HUrV-RHEHe4xbmjqOjSuwthQImvgX9-mz_LyE5g3N3_sFg0xK7Am1A0ljapNVPlMttLNgHq3S02JBmhW-ffJ5T8DCozBWTmC95ZX8JcZwpt-rkDEBmEUnln7_c/s400/1000190182.jpg", postUrl: "https://marcorx6.blogspot.com/2026/10/assassins-creed-black-flag.html", size: "17GB", version: "CUSA00009", format: "PKG", language: "العربية", system: "PlayStation 4 (PS4)", password: "4GAMER", credits: "4GAMER" },
+  { title: "Red Dead Redemption 2", category: "PlayStation 4", date: "2026-10-12", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjM0qoncNo6LRrKEKsert0CRQBxWfdIIQDKXRlM1_jEMn64aD7yIVJdHObZkXbU1uQehNk1REAiZhR_OHiFB23A4G32klSCPN72kVzfx5hshOo2_ny3uiVO76ZL_wnIwhmPfdZNOqRoxIzSiqW8Z0-Xy2xXqwYyxDQuhl04LkZnEhNtE0-PlJrE2aQI598/s400/1000189702.jpg", postUrl: "https://marcorx6.blogspot.com/2026/10/red-dead-redemption-2.html", size: "102GB", version: "CUSA08519", format: "PKG", language: "العربية", system: "PlayStation 4 (PS4)", password: "4GAMER", credits: "4GAMER" },
+  { title: "God of War Ragnarök", category: "PlayStation 4", date: "2026-10-12", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiacFpCcptjx8jHYo842jR2KR26RmJ7_4HT-jS8ZLamCrBgZRwLvY2wDNoxNNfIp7eZjp6kFhGTzjF_Si3Q8E3VCIX23dkojfemcCdFHLg1fBgSUlWjWKtHjqNaK4hlqoPZy4wXEtlpwEHWMUOBk47iD_lGfrPw_YDDPIJndqwop07phVPUepoO971FsNo/s400/1000189699.jpg", postUrl: "https://marcorx6.blogspot.com/2026/10/god-of-war-ragnarok.html", size: "124GB", version: "CUSA34390", format: "PKG", language: "العربيه", system: "PlayStation 4 (PS4)", password: "4GAMER", credits: "4GAMER" },
+  { title: "The Dark Pictures Anthology Little Hope", category: "PlayStation 4", date: "2026-10-11", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjHdwp0jEW0voygY_niEmzBnHelumbrh5iXPFWgcFfP0xp4h2D3BIOhgbuA7ydv4OZYkBT6z2r9-AHxX9GVUEqR3-EOA21i90fCNu990sd4lMfZT_CLP18ogbf0p0TCC0zjta0oEUeXAOKTb9DdnGFfzrBNCQdjgcpsZWe16QE6WCg_PJgVi2odkBNYl5o/s400/IMG_20261012_001833_839.jpg", postUrl: "https://marcorx6.blogspot.com/2026/10/the-dark-pictures-anthology-little-hope.html", size: "32GB", version: "غير معروف", format: "PKG", language: "معربه", system: "PlayStation 4 (PS4)", password: "4GAMER", credits: "4GAMER" },
+  { title: "Sackboy A Big Adventure", category: "PlayStation 4", date: "2026-10-11", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhFLIDXDG1SkJxwCLF3FV4gqR3xE5p9FAwQJyT7cQ09tFF3y5o353ef9dkNwoMOwZSel59o_4vagq32c9K_-PMgFxkR6i424IEQ7ebGXBKq-NTyXkVEhYxao627jFDKHgI0RzSPJ1j3dXtE19voiXaF5iHDcfTDrOxB_xsAov8MHAiWkSfN-3lNp3ait-Q/s400/1000024741.jpg", postUrl: "https://marcorx6.blogspot.com/2026/10/sackboyabigadventure.html", size: "32.66GB", version: "CUSA06313", format: "PKG", language: "العربيه", system: "PlayStation 4 (PS4)", password: "4GAMER", credits: "4GAMER" },
+  { title: "MediEvil", category: "PlayStation 4", date: "2026-10-11", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi_duxIkec7TVdvLQH-iMDfIBLsjvkgEgaD8Y3zSpa8GW_38g7gP1hIugfH5wwCsiuSCfOpyLDm-nas23zg96ybZBPFYmDSg65nh13oKETbtygG89hTZxHNDd0yDnDd8ny6AgXIaVZY3d1ctcrkpkXDKww4HF6EEFPRT0OZwaADQLT0wkf6-Dd-kkScw/s400/IMG_20261011_192751_795.jpg", postUrl: "https://marcorx6.blogspot.com/2026/10/marcorx6_01623413216.html", size: "35GB", version: "CUSA12982", format: "PKG", language: "العربيه", system: "PlayStation 4 (PS4)", password: "4GAMER", credits: "4GAMER" },
+  { title: "Marvels Guardians of The Galaxy", category: "PlayStation 4", date: "2026-10-11", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgF6Tb1iXDR0paLCp5KnoQEPnw873PzEiTYPxny0A39xO6fcFVjYZzL-MUDyXjt9RylGMQxZzGWa0Sp6_WRS38nlB4qwnmmzM3q0A9g-NuPx9lVi7bhLuBGm7nLCahyyk75bh80KXoEfoJ_gzkkU0NUUjC2ojUrWslyvl-AiYUU3bJyjvKbJAypDf4VnVE/s400/IMG_20261011_192007_049.jpg", postUrl: "https://marcorx6.blogspot.com/2026/10/marvels-guardians-of-galaxy.html", size: "64GB", version: "CUSA24103", format: "PKG", language: "العربيه", system: "PlayStation 4 (PS4)", password: "4GAMER", credits: "4GAMER" },
+  { title: "Far Cry 3 Classic Edition", category: "PlayStation 4", date: "2026-10-11", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj2Vp7iAgZHfiHZhIg3g5mCqXhKSt2SUxqlZhw7GGvML6lDKoPPIseWAUxb_81xAH3Wffbzhi4Ox75YyKsFlC-SZuNMa0IhanyY2OFt1vCx0biTgY4c_P35bCUp0GdEIlbNKcXo0SBzFf9S2dtrPZ7STfFhKpo2_yG9NTc0sFuhTyE0Nbcv4l4AV0PgPBI/s400/IMG_20261011_174020_106.jpg", postUrl: "https://marcorx6.blogspot.com/2026/10/far-cry-3-classic-edition.html", size: "7.5GB", version: "CUSA10326", format: "PKG", language: "العربية", system: "PlayStation 4 (PS4)", password: "4GAMER", credits: "4GAMER" },
+  { title: "Stray", category: "PlayStation 4", date: "2026-10-10", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgw4uIzmuQJBXlSrJLuCUj5AYy5GQZTR6FNIAvHCWsHMz6l5RFQR3rK0CCmwkS_3_LmVZHyAcONVPx4OapADAhEHG0N1P9s5Tu89OoQ6q0aFGW0uyWIiT8TedmWPBtyNHH22ErtuG6_DF-bbylqDBue7OVgmHH0GIEUgSMsbZ-ueaFsTZw2ln0Fu-RPTT8/s400/IMG_20261010_214726_678.jpg", postUrl: "https://marcorx6.blogspot.com/2026/10/stray.html", size: "13GB", version: "غير معروف", format: "PKG", language: "العربيه", system: "PlayStation 4 (PS4)", password: "4GAMER", credits: "4GAMER" },
+  { title: "The Crew 2 (Offline)", category: "PlayStation 4", date: "2026-10-10", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi2ZaSefpqyHM2iFuhWvoPcZy12TSD9F3imFYNgL_-BW0mejPjr97U2jXy4WBLFYwF2vsyE38_Q9rEvoR3x8nnjfixhDyKOJEHIFOh-65RYL2FZdJZTqZFRd1BNBnR9GU46fhZOnjzU1toQPe5pRqnEKJds_H8R3ZRgX67OcBE63eeKDuPNbdCsXiFXQys/s400/IMG_20261010_204703_563.jpg", postUrl: "https://marcorx6.blogspot.com/2026/10/the-crew-2-offline-2.html", size: "64GB", version: "CUSA08609", format: "PKG", language: "الإنجليزية", system: "PlayStation 4 (PS4)", password: "لايوجد", credits: "RX6" },
+  { title: "Call of Duty Modern Warfare Remastered", category: "PlayStation 4", date: "2026-10-10", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiRujUOKnWKlOgCvak-J7pENO24bA2eEhCgbkaIkyQi45DmCqA7-JsdzpACMPEG2cOOBPF-0kOqhS4l1LdcNhXF6U9G2wtRpHUS4l1NmmO5RAM3modmWhsAguUPljzBsZkRZqmWyIxEEavKP6VPrzJqVPoaIXemW-pD6YcLWMFs8KivmGUabOvYKtGFm2o/s400/IMG_20261010_204240_598.jpg", postUrl: "https://marcorx6.blogspot.com/2026/10/marcorx6.html", size: "79GB", version: "لايوجد", format: "PKG", language: "العربيه", system: "PlayStation 4 (PS4)", password: "4GAMER", credits: "4GAMER" },
+  { title: "Omensight", category: "PlayStation 4", date: "2026-10-10", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgrcaXijeCLOdZa7tKkpE_1oleDAm73DNmtdkh63ojFEcdTBA6lc9Cnjb8aawTEk4RGej3FLL4mzi3-DcQA7qx_f1fKnDalqKZen9Hv8MBY5qgwQocdWnhmILYPIpNXMyhBTShoEIzk2hlFfSzBC262gsoAeiZ4Kp9G91bqJQcsaBzdBJM_vWpj1Tk0k4/s400/1000189014.png", postUrl: "https://marcorx6.blogspot.com/2026/10/omensight.html", size: "8GB", version: "CUSA10775", format: "PKG", language: "العربيه", system: "PlayStation 4 (PS4)", password: "لايوجد", credits: "4GAMER" },
+  { title: "Assassin's Creed II", category: "PlayStation 3", date: "2026-10-08", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgWudDV_mufEFqVHZaqhRQqZZq1x1kULYYFDwU0uLbUmun4SIv8grl5ouXpzuVpYQyRe3sRQ8H2zu1lTSaavIyEp8YiN7tPtcU_w8PHUlI10dqohWlss_KfCloeYfZiGSnIRJazv5l8uZ6LdO_oIO9wlBDGMDXY6a7fV60vFnAKgdCVdc-OhKhSMNEZZW0/s400/1000188006.jpg", postUrl: "https://marcorx6.blogspot.com/2026/10/assassins-creed-ll.html", size: "19.08GB", version: "BLUS30364", format: "PKG", language: "الإنجليزية", system: "PlayStation 3 (PS3)", password: "لا يوجد", credits: "RX6" },
+  { title: "Teenage Mutant Ninja Turtles Mutants Unleashed", category: "PlayStation 4", date: "2026-10-08", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjuQ6qyaBUqhz-m8xI3ex5i7sNkos9AwDE8Y8rlTCOqmdi3rmwr5qMAw7Y6T0AtkBiD8iCFPLhNSmZOjyNIB52YLLLOmW2paf5y_qGlFWYJi2h3ILCZXq31s7FrW_-k3EjPOsXADJTRp5TqXq-oxPG0idVyzpH95r3zVM3WtvBIJBLA2S85bslrbpzHszQ/s400/1000187985.jpg", postUrl: "https://marcorx6.blogspot.com/2026/10/teenage-mutant-ninja-turtles-mutants.html", size: "11GB", version: "CUSA44075", format: "PKG", language: "العربية", system: "PlayStation 4 (PS4)", password: "4GAMER", credits: "4GAMER" },
+  { title: "Police Simulator Patrol Officers", category: "PlayStation 4", date: "2026-10-07", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi4M3jGvSSh6F-RquVMnn_2YJKQLCWehh5tdUkJLp5G5oF-OZx8pZoLMZKioa0rI3mf0hkNqroE29Nsi9xL-d8J26WrLE5qep8Pird5s45Zs4594xR22G0RJhviModrsjy1m27tjDmYBcPjDoHCgvriKxZZK73IasGCxkOY4hSiX87MP22sPm5Z57dxaSk/s400/1000187744.webp", postUrl: "https://marcorx6.blogspot.com/2026/10/police-simulator-patrol-officers.html", size: "15GB", version: "CUSA19608", format: "PKG", language: "الإنجليزية", system: "PlayStation 4 (PS4)", password: "SuperPSX", credits: "RX6" },
+  { title: "WWE All Stars", category: "PlayStation 3", date: "2026-10-05", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiRIgqo21XHhxKeyS5D1f5-8CNTtkmblYLCTrS3AeW7BlQMpMK-ejIdgVOgjhP7msKvf8jQNf2Wy5KBWe16AJe7cTIR_byBFkjUg2JlFHPO5w8Q-7O5tq3JqAOy0U62JxUaimIEYdPJXMsFUbIAwGaeOBnfjFvETRlYypdxor0zUxI0JJXJFx4YSL05OVU/s400/1000187218.jpg", postUrl: "https://marcorx6.blogspot.com/2026/10/wwe-all-stars.html", size: "7.41GB", version: "BLES00995", format: "PKG", language: "الإنجليزية", system: "PlayStation 3 (PS3)", password: "لايوجد", credits: "RX6" },
+  { title: "Spider-Man Shattered Dimensions", category: "PlayStation 3", date: "2026-10-05", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhgGlItYh-_YVP9eTaLF-euqBArZ-utmrx2vwmcxpwOEY7Q2Hp52hXpS4_q3j3Q5Lhq6zCuYytozhc6t9svOT2eoaL4E4sO_ys_wluKQ9mFhdXV9VZzB6J3yh_H-dReBxhpxZN3LmFX5aMcGH4L8VsSQzBTxmQYUK_OgQVYR850ss1lvz6nloHWiI_izXg/s400/1000187153.jpg", postUrl: "https://marcorx6.blogspot.com/2026/10/spider-man-shattered-dimensions.html", size: "12.30GB", version: "NPUB31779", format: "PKG", language: "الإنجليزية", system: "PlayStation 3 (PS3)", password: "لايوجد", credits: "RX6" },
+  { title: "Mortal Kombat 11 Ultimate", category: "PlayStation 4", date: "2026-10-04", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjmNHUOneHofvadxI9KkEbfKB-TJFb7OWRx5iBfAE3s6MNWJNWKCkpL7P4K-FXNNtMNalrrCXov6odAMgjgmDuJerhF7eyM0bmZDGBUKks8uNhn5UwoLwJsdcCPnJOgRtjkiwWickyyCJBRYIkOkVwtRv2SvDUSNJ0630rf7LCmZ-5NMwjV3pGbImpTQqw/s400/1000186790.webp", postUrl: "https://marcorx6.blogspot.com/2026/10/mortal-kombat-11-ultimate.html", size: "42GB", version: "CUSA11379", format: "PKG", language: "الإنجليزية", system: "PlayStation 4 (PS4)", password: "4GAMER", credits: "4GAMER" },
+  { title: "Tekken 7 Ultimate Edition", category: "PlayStation 4", date: "2026-09-27", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg_S473jqDfg2hi_Y3pH8TW4BKSTqH5jQMkoFKbRRRBFCR7hCBNw-_2PFKmJTE-2NqxeYNxnqtKMaNrn5tU2d3qOmwkF6lASr_Xun3Yty6Nttbi0rzrEKQzPHlIYlomIsCg9eqOHdYY2_LGPy_wtN8epzDcAr7cIkwmlDfgC1UtxBSpU31ZuzX6sz3FXZk/s400/1000183529.png", postUrl: "https://marcorx6.blogspot.com/2026/09/tekken-7-ultimate-edition.html", size: "60GB", version: "CUSA06014", format: "PKG", language: "العربيه", system: "PlayStation 4 (PS4)", password: "4GAMER", credits: "4GAMER" },
+  { title: "Call of Duty Black Ops 6", category: "PlayStation 4", date: "2026-09-27", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgt7gH0E7uifvExdMITdxUplMUtu0z8N6qIy_nCLqew87O-DCBxSzAxUHdHkROkQG8c3txbvKCvyAl_Yar4RNUxVh6ALTwlpaUQVImzpJMze_xkNjqP_Iue8d-0hS-2U0XP-tLM8g6L2N4AiMG3sKZqVKeeOSqlWQAqBWkF4bRY-wtLMk03_vpBOzfKULo/s400/1000183518.png", postUrl: "https://marcorx6.blogspot.com/2026/09/call-of-duty-black-ops-6.html", size: "57GB", version: "CUSA34029", format: "PKG", language: "العربيه", system: "PlayStation 4 (PS4)", password: "لايوجد", credits: "4GAMER" },
+  { title: "Resident Evil 7 Biohazard Gold Edition", category: "PlayStation 4", date: "2026-09-26", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgCrBF1dCT5EPrgelSLOKFvYgIgFdgIS2Lgrwto-sWIE7Yop2jGteqhXAGD_jkT6py1QI66Q4gePkJHQ0wxp3_VrJ6NPui3qQ0XuKc_tZNtHtkIABDxLS3Jw2MDdpeUwrpIUQ4pWpJn6i0jPa_wcLgcraSTtVFi_H_zj39jAUPIw1qU4AsRkar7p75rHo2o/s400/5891094860117249892.jpg", postUrl: "https://marcorx6.blogspot.com/2026/09/resident-evil-7-biohazard-gold-edition.html", size: "37GB", version: "CUSA03842", format: "PKG", language: "العربية", system: "PlayStation 4 (PS4)", password: "4GAMER", credits: "4GAMER" },
+  { title: "Shadow of the Tomb Raider", category: "PlayStation 4", date: "2026-09-26", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhvT4kzlB8guzY1tXLQYaQSaiS8XTFAz7at9L9k2zEg4dFNyFl-7kAPLxrAdEuQHc-ESrtsOFemkEB1neZwQxMT5K2RKiKE3LUCaUsf_j1R_glDttO-CWcFIW780juTlm-2FylLg-D5_EwpIMpSE7twiU7tF1XZ7Rn0lHdBRCjlypX13oJoS64RG0VTR6Q/s400/1000182054.png", postUrl: "https://marcorx6.blogspot.com/2026/09/shadow-of-tomb-raider.html", size: "25GB", version: "CUSA12089", format: "PKG", language: "العربيه", system: "PlayStation 4 (PS4)", password: "4GAMER", credits: "4GAMER" },
+  { title: "Uncharted 3: Drake's Deception Arabic", category: "بلايستيشن 3 معربة", date: "2026-09-25", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg6Hb4pAB7_lfZ5zNxXAwMyLAiCvBaULC1nHm9PgIjgUnuNw8UuH8Jg6N9tvdDzUk81v0VYDEM8N48vsvmjdFfhGXfBTvorZT6lcarrQ8m9TORBIou4twwaZtG5SUxHTJxKIoWq9FAnmim25ilpa2TKWaWzqIwjBtCxVgBUN8l9fc3bmzMAjZODVdiwsrQ/s400/1000181245.png", postUrl: "https://marcorx6.blogspot.com/2026/09/uncharted-3-drakes-deception-arabic.html", size: "46GB", version: "BCES01175", format: "Zip", language: "العربيه", system: "PlayStation 3 (PS3)", password: "لا يوجد", credits: "SKZEZO" },
+  { title: "Grand Theft Auto V", category: "PlayStation 4", date: "2026-09-24", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgW9IU7d3PJ2wuXNYt_8dgeSxGD-CmboSONwuHfS9Pd3WDabD2l-7r5zSu5fqwHaNOGPeRfh9r1wHmJzXkb4t2uzHdkSBZVAVuC_8XPanOvITEuvyE-j7lkqDrhqJKIvW2wvuMLYCN_-fM6nsd62i_kIpAxNjs2gGb2o_A-FTBI1nAFCB4N8QY5pBWWYVU/s400/1000180266.webp", postUrl: "https://marcorx6.blogspot.com/2026/09/grand-theft-auto-v.html", size: "95GB", version: "CUSA00419", format: "PKG", language: "الإنجليزية", system: "PlayStation 4 (PS4)", password: "4GAMER", credits: "4GAMER" },
+  { title: "EA Sports FC 27", category: "PlayStation 4", date: "2026-09-22", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjtTv5Cobmrf0x-07JtoTwPDf9jx4xkMw3en1ydx20qVfcYrulv4IejXOA4gI4HrCzNQJymgy030r58fixZGVAhtnVIMIPX-kGntnON8kW3BpLIFCxZUEVB6p4_p1Ur8E1qlW2Bo7kwzPGV3Zioz2lAuUm7nh29MLUiTSKmvlimWHJDbGCldCmIUsT7kWs/s400/1000179389.png", postUrl: "https://marcorx6.blogspot.com/2026/09/marcorx6.html", size: "63GB", version: "CUSA57220", format: "PKG", language: "العربيه", system: "PlayStation 4 (PS4)", password: "pspkg.com", credits: "4GAMER" },
+  { title: "Hitman 3", category: "PlayStation 4", date: "2026-09-21", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEivB5gCQT3NXMKAPDCldayWWhNyt9Vl8KyTKSvaaI1VePHtYpVO99UiN0887yle4y7ppdeloXc6EmBPbf9H9wk6f8k4LSWFXaVxuF4sjRtCT1ZKCMgnWx-x0v5cmmCyc3kxDrTDQu1_vryMC66FXLjI_NiQtXQdYciyUnYGTnw5nteUkf8E17EqL-x6Rt4/s400/1000178428.webp", postUrl: "https://marcorx6.blogspot.com/2026/09/hitman-3.html", size: "70GB", version: "CUSA18201", format: "PKG", language: "الإنجليزية", system: "PlayStation 4 (PS4)", password: "SuperPSX", credits: "RX6" },
+  { title: "Grand Theft Auto San Andreas Arabic", category: "بلايستيشن 2 معربة", date: "2026-08-30", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEilzROe-AXt-vEYMoZzPheIqKH3QCQ2bVfoRba0fFWbwvGW799ZGcH0xxMKGN0KjZwcMF1idEfsQXU1f1ioRN_kg9Wjf3a7nxguz1TyoCgv9Ne7LKMztG4Qhi1bHvu96K0AQcDSRCYmxkgQM9FqENrbaIJcETssyoaAbFIY6TUA9RtOLkdcvnVTwVKKLUc/s400/1000153459.jpg", postUrl: "https://marcorx6.blogspot.com/2026/08/grand-theft-auto-san-andreas-arabic_0310477789.html", size: "3.92GB", version: "غير معروف", format: "PKG", language: "العربية", system: "PlayStation 2 (PS2)", password: "لا يوجد", credits: "RX6" },
+  { title: "Midnight Club 3 DUB Edition Remix Arabic", category: "بلايستيشن 2 معربة", date: "2026-08-24", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhQLbtD3VVbL1By_J6CbzP__DHc_5uGJolc5OJ43opa9QSS_W8D6E7Tfyg9BY4pHBbLyChNZP1zJKPFMchNJ7Ma6BZLp-jX_y9YApzK6-x_oDYTj-UHod9b34P5HbzQueaezHmGtdNAN6VnTdSB2KUdeeDn3UUTCzUXG09wXdU_vQ0hIrfuQm3N9BEtjI/s400/1000140172.jpg", postUrl: "https://marcorx6.blogspot.com/2026/08/midnight-club-3-dub-edition-remix-arabic.html", size: "غير معروف", version: "SLUS21355", format: "PKG", language: "العربية", system: "PlayStation 2 (PS2)", password: "لا يوجد", credits: "RX6" },
+  { title: "Batman Arkham Asylum", category: "PlayStation 3", date: "2026-08-05", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj8Ngfb9ynYKMDv-blzd0AwJJA1pyWBnVtmg1B-YJSPi9VKqeWLeNBid5FmAzYPpyIH14Y4KC9uBlbPQ8XlMXCLpNtpWdazf_7rCDCSOeJbMPU27UdS7K61xnTkaAWs619e0oWvHGJpR1hrEvWRbhQ2vnqKpKbC6ntGE_ZQLy0VONmf5Cb-uFS4B4aRCbs/s400/1000075161.jpg", postUrl: "https://marcorx6.blogspot.com/2026/08/batman-arkham-asylum.html", size: "غير معروف", version: "NPUB30920", format: "PKG", language: "الإنجليزية", system: "PlayStation 3 (PS3)", password: "لا يوجد", credits: "RX6" },
+  { title: "PES Pro Evolution Soccer 2007", category: "PlayStation 2", date: "2026-08-03", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg6Y5DKk_voNmC85GaEFj5_OyPtqK7Qh3rpq4HAAhdb5B6OyXhiraWsEQip151CZyIYIY1-KeFZC2PGIybHN1FddNJ0tLG-BU4u2hiYyBclF9dqmiCGXI_kTqMzvixSP-RRFACsE4gEJvTHBlqadlokB_sO0iQhpfd_O9hmPY2ZD8kqt0dnl8Moaa7eb34/s400/1000073095.jpg", postUrl: "https://marcorx6.blogspot.com/2026/08/pes-pro-evolution-soccer-2007.html", size: "غير معروف", version: "غير معروف", format: "PKG", language: "الإنجليزية", system: "PlayStation 2 (PS2)", password: "لا يوجد", credits: "RX6" },
+  { title: "SILENT HILL 3 | سايلنت هيل 3", category: "بلايستيشن 2 معربة", date: "2025-12-02", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhkAcHkcc8SMQvhI1HWmsd1rbA7SxD-o2Chzpr-zZjuhR3VisM6eOL_9stCJ3z7RE_e_figCDUAZVgKsSHh6M9y8XR6tDfSkAFjc66sG0hpy-J4K3DYg8diX52CNXjxzvNEc6vKvqgTSGf5q2KGkUZk2Q6V7djMGfyg7WIsqAbasGczFzlvvmulAziAq4E/s400/IMG_7277.jpeg", postUrl: "https://marcorx6.blogspot.com/2025/12/silent-hill-3.html", size: "غير معروف", version: "SLUS20622", format: "PKG", language: "العربية", system: "PlayStation 2 (PS2)", password: "لا يوجد", credits: "RX6" },
+  { title: "Onimusha Warlords | أونيموشا أمراء الحرب", category: "بلايستيشن 2 معربة", date: "2025-11-29", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj4vCvC1XrbjAkCxAAFkbQerMVOKmFL2XhhIiG8jK8VYK4hNKkhYQuzTeV2A2bcVUtR8eYWHvAFmW0HfYU8N9RScjdlD33Ysl6zL8Gd2ZhbAmYYDQVD6U13eNQyM-04-uClerbQjaUKN6GsjRn1FYQDwN4gMAFyd2fRwMjmqfSZ1NkQa3bdP2paEhsaKi8/s400/50003192744f0a3e.jpeg", postUrl: "https://marcorx6.blogspot.com/2025/11/onimusha-warlords.html", size: "غير معروف", version: "غير معروف", format: "PKG", language: "العربية", system: "PlayStation 2 (PS2)", password: "لا يوجد", credits: "RX6" },
+  { title: "Resident Evil 5", category: "PlayStation 3", date: "2025-11-16", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhgKuFvroWR2UL4p6sXxbqftCfyBUhlH97bbW02UYrugycvFaVbsqzXbASRjeRattOCWmVC5LIPnZXzDqC0WW6i6QZuKdOzm2WeaUO-jbynr-vW1KL8U2YrMCo_mo9_dsRw0GfSLzXf77ik0qxsJ4OlVjkV-NjSoFQHETKwIerhwXy3GSjMTeDKS2JY2wg/s400/IMG_20251117_093623_493.jpg", postUrl: "https://marcorx6.blogspot.com/2025/11/resident-evil-5.html", size: "غير معروف", version: "BLES-00485", format: "PKG", language: "الإنجليزية", system: "PlayStation 3 (PS3)", password: "لا يوجد", credits: "RX6" },
+  { title: "Resident Evil 4 HD", category: "PlayStation 3", date: "2025-11-16", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZqyj2MT2PlhGjzlewAfTAh-yDsUGcBeP9SVgqGD-gdf0hoX9eDS_8b-C7doe1NEHFgoaQ37tTBs2AQgdIEyRJvrd1bnnIMsakkhq1EdybMykLOxiPZX48z7f3hplkytzFeY61-cQDgHk0NztY_HYhZN28EIVB3o5ftaz1mavaoVIxCgd_YHhjI6dNQs8/s400/IMG_20251117_093623_454.jpg", postUrl: "https://marcorx6.blogspot.com/2025/11/resident-evil-4-hd.html", size: "غير معروف", version: "NPUB-30312", format: "PKG", language: "الإنجليزية", system: "PlayStation 3 (PS3)", password: "لا يوجد", credits: "RX6" },
+  { title: "Tomb Raider", category: "PlayStation 3", date: "2025-11-16", cover: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhIvCIgUwSiKd7tYNHgy_i5YxzLQvshw_zWNLOljn70THcNZB4-Mn2RF1GPRHx3z0ShjKYS2vstKwANuLss0XUEyNR3KKssJ3X_-gJthclpqHolGw0jaH2o7Bbnp8nSjY8nBqpp1J2qDtvKCiXkmPMciBzgDMAVXMDYCcGpW6Xf-2AlFDST1UF58Zb06eE/s400/IMG_20251117_093623_020.jpg", postUrl: "https://marcorx6.blogspot.com/2025/11/tomb-raider.html", size: "غير معروف", version: "BLES-01780", format: "PKG", language: "الإنجليزية", system: "PlayStation 3 (PS3)", password: "لا يوجد", credits: "RX6" }
+].map(function (g, i) {
+  return Object.assign({}, g, {
+    id: 1000 + i,
+    views: 40 + ((i + 3) * 67) % 460,
+    downloads: 12 + ((i + 3) * 29) % 210,
+    excerpt: "أهلاً بكم متابعي مدونة MARCO_RX6 الكرام. إليكم لعبة جديدة من إضافاتنا الحصرية بروابط مباشرة وسريعة.",
+    links: []
+  });
+});
+
+function hash(s) { var h = 0; for (var i = 0; i < s.length; i++) { h = (h * 31 + s.charCodeAt(i)) | 0; } return Math.abs(h); }
+function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+
+function loadGames() {
+  try { var raw = localStorage.getItem(STORAGE_KEY); if (raw) return JSON.parse(raw); } catch (e) {}
+  return DEFAULT_GAMES;
+}
+function saveGames(g) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(g)); } catch (e) {} }
+
+var state = { view: "home", games: loadGames(), currentId: null, cat: null, search: "", loggedIn: false, editing: null, liveStatus: "جارٍ مزامنة أحدث المشاركات من المدونة..." };
+
+// ——— مزامنة حية مع خلاصة مدونة Blogger ———
+function parseFeedEntry(e) {
+  var html = (e.content && e.content.$t) || "";
+  function grab(label) {
+    var m = html.match(new RegExp(label + "\\s*:?\\s*(?:</?(?:strong|b|span|div)>)*\\s*([^<\\n]+)"));
+    return m ? m[1].replace(/&nbsp;/g, " ").trim() : "";
+  }
+  var title = (e.title && e.title.$t) || "";
+  if (!title) return null;
+  var category = e.category && e.category[0] ? e.category[0].term : "PlayStation 4";
+  var date = ((e.published && e.published.$t) || "").slice(0, 10);
+  var cover = (e.media$thumbnail && e.media$thumbnail.url || "").replace(/\/s\d+(-c)?\//, "/s400/");
+  var postUrl = ""; (e.link || []).forEach(function (l) { if (l.rel === "alternate") postUrl = l.href; });
+  var section = (html.split("روابط التحميل")[1] || "");
+  var re = /<a href="([^"]+)"[^>]*>([^<]*)<\/a>/g, m, anchors = [];
+  while ((m = re.exec(section)) !== null) {
+    if (!/blogger\.|googleusercontent|youtube|blogspot/.test(m[1])) {
+      anchors.push({ name: (m[2].trim().length > 1 ? m[2].trim() : "تحميل الآن"), url: m[1] });
+    }
+  }
+  var exc = (html.match(/أهلاً بكم[^<]{0,220}/) || ["أهلاً بكم في مدونة MARCO_RX6."])[0].trim();
+  return {
+    title: title.trim(), category: category, date: date, cover: cover, postUrl: postUrl, links: anchors.slice(0, 6),
+    system: grab("نظام التشغيل") || (category.indexOf("PlayStation") === 0 ? category + " (" + category.replace("PlayStation", "PS").replace(/\s/g, "") + ")" : category),
+    size: grab("الحجم"), version: grab("النسخة"), format: grab("الصيغة"),
+    language: grab("اللغة"), password: grab("كلمة السر"), credits: grab("الحقوق"),
+    excerpt: exc, views: 20 + hash(title) % 500, downloads: 8 + hash(title + "d") % 250
+  };
+}
+
+function fetchLiveFeed() {
+  var cbName = "__marcoFeed";
+  var old = document.getElementById("marco-feed-script");
+  if (old && old.parentNode) old.parentNode.removeChild(old);
+  var script = document.createElement("script");
+  script.id = "marco-feed-script";
+  script.src = BLOG_URL + "/feeds/posts/default?alt=json-in-script&max-results=50&callback=" + cbName;
+  script.onerror = function () { state.liveStatus = "⚠️ تعذّرت المزامنة الحية — تُعرض آخر نسخة محفوظة"; render(); };
+  window[cbName] = function (data) {
+    var live = (data && data.feed && data.feed.entry) ? data.feed.entry.map(parseFeedEntry).filter(Boolean) : null;
+    if (live && live.length) {
+      var seen = {};
+      var userAdded = state.games.filter(function (g) { return g.userAdded; });
+      var rest = state.games.filter(function (g) { return !g.userAdded; });
+      live.forEach(function (g) { g.id = hash(g.title); });
+      var merged = live.concat(rest).filter(function (g) {
+        var k = g.title.trim();
+        if (seen[k]) return false;
+        seen[k] = 1; return true;
+      });
+      state.games = userAdded.concat(merged);
+      saveGames(state.games);
+      state.liveStatus = "✅ تمت المزامنة مع المدونة — " + live.length + " مشاركة حديثة";
+      toast("🔄 تم تحديث الألعاب من مدونتك");
+    } else {
+      state.liveStatus = "⚠️ تعذّرت المزامنة الحية — تُعرض آخر نسخة محفوظة";
+    }
+    render();
+  };
+  document.head.appendChild(script);
+  setTimeout(function () {
+    if (state.liveStatus.indexOf("جارٍ") === 0) { state.liveStatus = "⚠️ تعذّرت المزامنة الحية — تُعرض آخر نسخة محفوظة"; render(); }
+  }, 15000);
+}
+
+// ——— أدوات العرض ———
+function toast(msg) {
+  var old = document.getElementById("toast"); if (old) old.remove();
+  var t = document.createElement("div");
+  t.id = "toast"; t.className = "toast"; t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(function () { if (t.parentNode) t.remove(); }, 2600);
+}
+
+function posterInner(g) {
+  if (g.cover) return '<img src="' + esc(g.cover) + '" alt="' + esc(g.title) + '" loading="lazy" onerror="this.remove()">';
+  return '<div class="ph">🎮</div>';
+}
+
+function cardsHTML(list) {
+  if (!list.length) return '<div style="grid-column:1/-1;text-align:center;border:1px dashed #374151;border-radius:8px;padding:38px;color:#6b7280;font-size:13px">لا توجد ألعاب مطابقة 🎮</div>';
+  return list.map(function (g) {
+    return '<button class="card" onclick="openGame(' + g.id + ')">' +
+      '<div class="poster">' + posterInner(g) + '</div>' +
+      '<div class="meta"><div class="t">' + esc(g.title) + '</div>' +
+      '<div class="s"><span class="badge">' + esc(g.category) + '</span><span>⬇️ ' + g.downloads + ' · 👁️ ' + g.views + '</span></div></div></button>';
+  }).join("");
+}
+
+function sidebarHTML() {
+  var counts = {};
+  state.games.forEach(function (g) { counts[g.category] = (counts[g.category] || 0) + 1; });
+  return '<aside class="side">' +
+    '<div class="panel"><h3>الأقسام</h3>' + CATEGORIES.map(function (c) {
+      return '<button class="cat-item" onclick="openCat(\'' + esc(c.name).replace(/'/g, "\\'") + '\')"><span>' + esc(c.name) + '</span><span class="n">' + (counts[c.name] || 0) + '</span></button>';
+    }).join("") + '</div>' +
+    '<div class="panel"><h3>الحساب</h3><p style="margin-bottom:10px">أنشئ حسابك في الموقع أو سجل الدخول إلى حسابك.</p>' +
+    '<button class="btn btn-o" style="width:100%" onclick="' + (state.loggedIn ? "openAdmin()" : "openLogin()") + '">تسجيل الدخول</button></div>' +
+    '<div class="panel"><h3>انضمام فريق RX6</h3><p>تعلم طريقة نشر الألعاب، ثم اجتز الاختبار. عند النجاح تواصل مع إدارة الموقع عبر Telegram.</p></div>' +
+    '<div class="panel"><h3>خدمات سريعة</h3><div class="svc">' +
+    '<p onclick="toast(\'قريباً: قائمة المفضلة ⭐\')">جميع الألعاب المفضلة</p>' +
+    '<p onclick="openCat(\'PlayStation 4\')">جميع الأقسام</p>' +
+    '<p onclick="goHome()">البحث عن لعبة</p>' +
+    '<p><a href="https://marcorx6.blogspot.com" target="_blank" rel="noreferrer">تواصل معنا</a></p>' +
+    '</div></div></aside>';
+}
+
+function homeHTML() {
+  var list = state.search
+    ? state.games.filter(function (g) { return g.title.toLowerCase().indexOf(state.search.toLowerCase()) > -1 || g.category.indexOf(state.search) > -1; })
+    : state.games;
+  return '<div><div class="home-head">' +
+    '<div class="search"><input placeholder="🔍 البحث عن لعبة..." value="' + esc(state.search) + '" oninput="onSearch(this.value)"></div>' +
+    '<button class="btn btn-o" onclick="restoreLib()">🔄 استعادة</button></div>' +
+    '<div class="status">' + esc(state.liveStatus) + '</div>' +
+    '<div class="sec-title"><h2>🎮 أحدث الألعاب</h2><span>' + state.games.length + ' لعبة</span></div>' +
+    '<div class="cards" id="gameGrid">' + cardsHTML(list) + '</div></div>';
+}
+
+function categoryHTML() {
+  return '<div><button class="back" onclick="goHome()">→ الرئيسية</button>' +
+    '<div class="sec-title"><h2>📁 قسم ' + esc(state.cat) + '</h2><span>' + state.games.filter(function (g) { return g.category === state.cat; }).length + ' لعبة</span></div>' +
+    '<div class="cards">' + cardsHTML(state.games.filter(function (g) { return g.category === state.cat; })) + '</div></div>';
+}
+
+function gameHTML(g) {
+  var info = [["نظام التشغيل", g.system], ["الحجم", g.size], ["النسخة / الإصدار", g.version], ["الصيغة", g.format], ["اللغة", g.language], ["كلمة السر", g.password], ["الحقوق", g.credits]]
+    .filter(function (r) { return r[1]; });
+  var sameCat = state.games.filter(function (x) { return x.id !== g.id && x.category === g.category; }).slice(0, 4);
+  var other = state.games.filter(function (x) { return x.id !== g.id && x.category !== g.category; }).slice(0, 4 - sameCat.length);
+  var suggested = sameCat.concat(other);
+  var linksHTML = "";
+  if (g.links && g.links.length) {
+    linksHTML = g.links.map(function (l) { return '<a class="btn" href="' + esc(l.url) + '" target="_blank" rel="noreferrer">' + esc(l.name) + '</a>'; }).join("");
+  } else if (g.postUrl) {
+    linksHTML = '<a class="btn" href="' + esc(g.postUrl) + '" target="_blank" rel="noreferrer">تحميل الآن من المدونة</a>';
+  }
+  var pageLink = (g.postUrl && g.links && g.links.length)
+    ? '<a style="font-size:11px;color:#6b7280;display:inline-block;margin-top:10px" href="' + esc(g.postUrl) + '" target="_blank" rel="noreferrer">↗ صفحة اللعبة على المدونة الأصلية</a>' : "";
+  return '<article>' +
+    '<div class="crumbs"><button onclick="goHome()">الرئيسية</button><span>›</span><span style="color:#d1d5db">' + esc(g.category) + '</span><span>›</span><span style="color:#fff">' + esc(g.title) + '</span></div>' +
+    '<div class="game-top"><div class="gcover">' + (g.cover ? '<img src="' + esc(g.cover) + '" alt="' + esc(g.title) + '" onerror="this.remove()">' : '<div style="display:grid;place-items:center;aspect-ratio:3/4"><div style="font-size:40px;opacity:.5">🎮</div></div>') + '</div>' +
+    '<div><h1 class="gtitle">' + esc(g.title) + '</h1>' +
+    '<div class="gsub"><span class="badge">' + esc(g.category) + '</span><span>مشاهدة <b style="color:#e5e7eb">' + g.views + '</b></span><span>تحميل <b style="color:#e5e7eb">' + g.downloads + '</b></span></div>' +
+    '<p class="gdesc">' + esc(g.excerpt) + '</p></div></div>' +
+    '<div class="infotbl"><h2>معلومات اللعبة:</h2><table><tbody>' +
+    info.map(function (r) { return '<tr><td class="k">' + esc(r[0]) + '</td><td>' + esc(r[1]) + '</td></tr>'; }).join("") +
+    '</tbody></table></div>' +
+    '<div class="dl"><h2>⬇️ روابط التحميل المباشرة:</h2><div class="row">' + linksHTML + '</div>' + pageLink + '</div>' +
+    (suggested.length ? '<div class="sec-title"><h2>🎮 ألعاب مقترحة</h2></div><div class="cards">' + cardsHTML(suggested) + '</div>' : "") +
+    '</article>';
+}
+
+function loginHTML() {
+  return '<div class="auth"><h2>🔓 تسجيل الدخول</h2><p>أنشئ حسابك في الموقع أو سجل الدخول إلى حسابك.</p>' +
+    '<input type="password" id="pass" placeholder="كلمة المرور" onkeydown="if(event.key===\'Enter\')tryLogin()">' +
+    '<p class="err hidden" id="loginErr">كلمة المرور غير صحيحة</p>' +
+    '<button class="btn" style="width:100%;margin-top:10px" onclick="tryLogin()">تسجيل الدخول</button>' +
+    '<p style="font-size:10px;color:#4b5563;text-align:center;margin-top:10px">كلمة المرور الافتراضية للمشرف: admin</p></div>';
+}
+
+function adminHTML() {
+  var cats = CATEGORIES.map(function (c) { return '<option>' + esc(c.name) + '</option>'; }).join("");
+  var editingGame = state.editing != null ? state.games.filter(function (g) { return g.id === state.editing; })[0] : null;
+  function val(v) { return esc(v || ""); }
+  return '<div class="admin"><button class="back" onclick="goHome()">→ رجوع للمدونة</button>' +
+    '<form onsubmit="submitGame(event)"><h2>' + (editingGame ? "✏️ تعديل لعبة" : "➕ إضافة لعبة جديدة") + '</h2>' +
+    '<div class="fgrid">' +
+    '<input id="f_title" placeholder="اسم اللعبة" value="' + val(editingGame && editingGame.title) + '" required>' +
+    '<select id="f_cat">' + cats + '</select>' +
+    '<input class="wide" id="f_cover" placeholder="رابط صورة الغلاف (https://...)" value="' + val(editingGame && editingGame.cover) + '">' +
+    '<input id="f_size" placeholder="الحجم (مثال: 63GB)" value="' + val(editingGame && editingGame.size) + '">' +
+    '<input id="f_version" placeholder="النسخة / الإصدار (CUSA...)" value="' + val(editingGame && editingGame.version) + '">' +
+    '<input id="f_format" placeholder="الصيغة (PKG / FPKG)" value="' + val(editingGame && editingGame.format) + '">' +
+    '<input id="f_lang" placeholder="اللغة" value="' + val(editingGame && editingGame.language) + '">' +
+    '<input id="f_pass" placeholder="كلمة السر" value="' + val(editingGame && editingGame.password) + '">' +
+    '<input id="f_credits" placeholder="الحقوق" value="' + val(editingGame && editingGame.credits) + '">' +
+    '<input id="f_posturl" placeholder="رابط صفحة اللعبة على المدونة (اختياري)" value="' + val(editingGame && editingGame.postUrl) + '">' +
+    '<textarea class="wide" id="f_sys" rows="2" placeholder="نظام التشغيل">' + val(editingGame && editingGame.system) + '</textarea>' +
+    '<textarea class="wide" id="f_desc" rows="2" placeholder="وصف اللعبة">' + val(editingGame && editingGame.excerpt) + '</textarea>' +
+    '<textarea class="wide" id="f_links" rows="3" placeholder="روابط التحميل (اسم | رابط في كل سطر)&#10;مثال: Game full | https://...">' + val(editingGame && (editingGame.links || []).map(function (l) { return l.name + " | " + l.url; }).join("\n")) + '</textarea>' +
+    '</div><div style="margin-top:14px;display:flex;gap:8px">' +
+    '<button type="submit" class="btn">' + (editingGame ? "حفظ التعديلات" : "نشر اللعبة") + '</button>' +
+    (editingGame ? '<button type="button" class="btn btn-o" onclick="cancelEdit()">إلغاء</button>' : "") +
+    '</div></form>' +
+    '<div class="sec-title"><h2>📚 كل الألعاب (' + state.games.length + ')</h2></div>' +
+    state.games.map(function (g) {
+      return '<div class="rowlist"><div class="thumb">' + (g.cover ? '<img src="' + esc(g.cover) + '" onerror="this.remove()">' : "🎮") + '</div>' +
+        '<div class="info"><div class="t">' + esc(g.title) + '</div><div class="s">' + esc(g.category) + ' · ' + esc(g.date) + ' · 👁️ ' + g.views + ' · ⬇️ ' + g.downloads + '</div></div>' +
+        '<button class="ed" onclick="editGame(' + g.id + ')">تعديل</button>' +
+        '<button class="de" onclick="deleteGame(' + g.id + ')">حذف</button></div>';
+    }).join("") + '</div>';
+}
+
+// ——— أحداث ———
+function onSearch(v) { state.search = v; var grid = document.getElementById("gameGrid"); if (grid) grid.innerHTML = cardsHTML(state.games.filter(function (g) { return g.title.toLowerCase().indexOf(v.toLowerCase()) > -1 || g.category.indexOf(v) > -1; })); }
+function goHome() { state.view = "home"; state.editing = null; render(); window.scrollTo(0, 0); }
+function openCat(c) { state.view = "category"; state.cat = c; render(); window.scrollTo(0, 0); }
+function openGame(id) { state.view = "game"; state.currentId = id; var g = state.games.filter(function (x) { return x.id === id; })[0]; if (g) { g.views = (g.views || 0) + 1; saveGames(state.games); } render(); window.scrollTo(0, 0); }
+function openLogin() { state.view = "login"; render(); }
+function openAdmin() { state.view = "admin"; render(); window.scrollTo(0, 0); }
+function restoreLib() { state.games = DEFAULT_GAMES.slice(); saveGames(state.games); toast("تم استعادة المكتبة 🔄"); render(); }
+function tryLogin() {
+  var p = document.getElementById("pass").value;
+  if (p === ADMIN_PASS) { state.loggedIn = true; state.view = "admin"; render(); toast("مرحباً بك، أيها المشرف 👋"); }
+  else { document.getElementById("loginErr").classList.remove("hidden"); }
+}
+function cancelEdit() { state.editing = null; render(); window.scrollTo(0, 0); }
+function editGame(id) { state.editing = id; state.view = "admin"; render(); window.scrollTo(0, 0); }
+function deleteGame(id) {
+  state.games = state.games.filter(function (g) { return g.id !== id; });
+  saveGames(state.games); toast("🗑️ تم الحذف"); render();
+}
+function submitGame(ev) {
+  ev.preventDefault();
+  function f(id) { var el = document.getElementById(id); return el ? el.value.trim() : ""; }
+  var title = f("f_title");
+  if (!title) { toast("⚠️ اسم اللعبة مطلوب"); return; }
+  var select = document.getElementById("f_cat");
+  var links = f("f_links").split("\n").filter(Boolean).map(function (line) {
+    var parts = line.split("|").map(function (s) { return s.trim(); });
+    return { name: parts[0] || "تحميل الآن", url: parts[1] || "#" };
+  });
+  var data = { title: title, category: select ? select.value : CATEGORIES[0].name, cover: f("f_cover"), size: f("f_size"), version: f("f_version"), format: f("f_format"), language: f("f_lang"), password: f("f_pass"), credits: f("f_credits"), postUrl: f("f_posturl"), system: f("f_sys"), excerpt: f("f_desc") || "أهلاً بكم متابعي مدونة MARCO_RX6 الكرام.", links: links };
+  if (state.editing != null) {
+    state.games = state.games.map(function (g) { return g.id === state.editing ? Object.assign({}, g, data) : g; });
+    toast("✅ تم تحديث اللعبة");
+  } else {
+    state.games = [Object.assign({ id: Date.now(), date: new Date().toISOString().slice(0, 10), views: 0, downloads: 0, userAdded: true }, data)].concat(state.games);
+    toast("✅ تم نشر اللعبة");
+  }
+  state.editing = null; saveGames(state.games); render(); window.scrollTo(0, 0);
+}
+
+function render() {
+  var layout = document.getElementById("layout");
+  var inner = "";
+  if (state.view === "home") inner = homeHTML() + sidebarHTML();
+  else if (state.view === "category") inner = categoryHTML();
+  else if (state.view === "game") {
+    var g = state.games.filter(function (x) { return x.id === state.currentId; })[0];
+    inner = g ? gameHTML(g) : homeHTML();
+  }
+  else if (state.view === "login") inner = loginHTML();
+  else if (state.view === "admin") inner = state.loggedIn ? adminHTML() : loginHTML();
+  layout.innerHTML = inner;
+  if (state.view === "admin" && state.editing != null) {
+    var eg = state.games.filter(function (x) { return x.id === state.editing; })[0];
+    var sel = document.getElementById("f_cat");
+    if (eg && sel) sel.value = eg.category;
+  }
+  var adminBtn = document.getElementById("adminBtn");
+  if (adminBtn) {
+    adminBtn.innerHTML = state.loggedIn ? "⚙️ الإدارة" : "🔓 دخول";
+    adminBtn.setAttribute("onclick", state.loggedIn ? "openAdmin()" : "openLogin()");
+  }
+  var btns = document.querySelectorAll(".bottomnav button");
+  for (var i = 0; i < btns.length; i++) {
+    var b = btns[i];
+    var active = (b.getAttribute("data-bn") === "home" && state.view === "home") || (b.getAttribute("data-bn") === "cat" && state.view === "category");
+    if (active) b.classList.add("active"); else b.classList.remove("active");
+  }
+  var navs = document.querySelectorAll(".nav button");
+  for (var j = 0; j < navs.length; j++) {
+    if (j === 0 && state.view === "home") navs[j].classList.add("active"); else navs[j].classList.remove("active");
+  }
+}
+
+render();
+fetchLiveFeed();
+</script>
+</body>
+</html>
